@@ -29,4 +29,10 @@
         provides=".behaviors.IPerson"
         />
 
+    <utility
+        provides="zope.schema.interfaces.IVocabularyFactory"
+        name="ibme.persondirectory.personfieldsvocab"
+        component=".behaviors.PersonFieldsVocab"
+        />
+
 </configure>
