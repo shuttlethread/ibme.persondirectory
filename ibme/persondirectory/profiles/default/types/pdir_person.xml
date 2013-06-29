@@ -27,6 +27,7 @@
      <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
      <element value="plone.app.dexterity.behaviors.metadata.IPublication"/>
      <element value="plone.app.dexterity.behaviors.metadata.IOwnership"/>
+     <element value="plone.app.content.interfaces.INameFromTitle" />
  </property>
 
  <!-- Add permission -->

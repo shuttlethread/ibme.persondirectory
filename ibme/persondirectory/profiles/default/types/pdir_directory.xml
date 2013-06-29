@@ -26,6 +26,7 @@
  <property name="behaviors">
      <element value="ibme.persondirectory.behaviors.IPersonDirectory"/>
      <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
+     <element value="plone.app.content.interfaces.INameFromTitle" />
  </property>
 
  <!-- Add permission -->
