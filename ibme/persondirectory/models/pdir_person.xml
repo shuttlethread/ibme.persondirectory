@@ -1,0 +1,8 @@
+<model xmlns="http://namespaces.plone.org/supermodel/schema">
+  <schema>
+    <field name="title" type="zope.schema.TextLine">
+      <title>Full Name</title>
+      <description>Enter your full name</description>
+    </field>
+  </schema>
+</model>

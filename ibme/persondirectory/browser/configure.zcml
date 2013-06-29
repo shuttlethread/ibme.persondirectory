@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ibme.persondirectory">
+
+  <browser:page
+      for="..behaviors.IPersonDirectory"
+      name="view"
+      class=".directory.DirectoryView"
+      template="pdir_directory_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      for="..behaviors.IPersonDirectory"
+      name="unique-entries"
+      class=".directory.UniqueEntriesView"
+      permission="zope2.View"
+      />
+</configure>

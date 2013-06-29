@@ -1,0 +1,32 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="ibme.persondirectory">
+
+    <includeDependencies package="." />
+
+    <include package=".browser" file="configure.zcml" />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="Person Directory"
+        directory="profiles/default"
+        description="Dexterity-based person directory"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <plone:behavior
+        title="Person directory"
+        description="Marker interface for person directory root"
+        provides=".behaviors.IPersonDirectory"
+        />
+
+    <plone:behavior
+        title="Person"
+        description="Marker interface for person directory people"
+        provides=".behaviors.IPerson"
+        />
+
+</configure>
