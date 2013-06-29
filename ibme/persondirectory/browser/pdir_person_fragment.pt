@@ -6,14 +6,18 @@
      class="persondirectory-person">
      
   <h4><a tal:attributes="href context/absolute_url" tal:content="context/title">Title</a></h4>
+  <tal:t tal:condition="context/portrait">
+    <img tal:define="scale context/@@images"
+         tal:replace="structure python:scale.scale('portrait', scale='pdir-portrait').tag(css_class='portrait')" />
+  </tal:t>
 
   <dl>
     <tal:t tal:repeat="widget view/widgets/values">
       <dt tal:attributes="class string:field-${widget/__name__}"
-          tal:condition="python:widget.__name__ not in ('title')"
+          tal:condition="python:widget.__name__ not in ('title', 'portrait')"
           tal:content="widget/label">Label</dt>
       <dd tal:attributes="class string:field-${widget/__name__}"
-          tal:condition="python:widget.__name__ not in ('title')"
+          tal:condition="python:widget.__name__ not in ('title', 'portrait')"
           tal:content="structure widget/render"></dd>
     </tal:t>
   </dl>

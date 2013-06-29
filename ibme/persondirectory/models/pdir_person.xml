@@ -2,7 +2,12 @@
   <schema>
     <field name="title" type="zope.schema.TextLine">
       <title>Full Name</title>
-      <description>Enter your full name</description>
+      <description>Enter the person's full name</description>
+    </field>
+    <field name="portrait" type="plone.namedfile.field.NamedBlobImage">
+      <title>The person's portrait</title>
+      <description>Upload an image of the user</description>
+      <required>False</required>
     </field>
   </schema>
 </model>
