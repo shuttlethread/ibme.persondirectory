@@ -5,7 +5,7 @@
       <description>Enter the person's full name</description>
     </field>
     <field name="portrait" type="plone.namedfile.field.NamedBlobImage">
-      <title>The person's portrait</title>
+      <title>Portrait</title>
       <description>Upload an image of the user</description>
       <required>False</required>
     </field>
