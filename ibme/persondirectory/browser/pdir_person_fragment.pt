@@ -1,0 +1,20 @@
+<div
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+     i18n:domain="ibme.persondirectory"
+     class="persondirectory-person">
+     
+  <h4><a tal:attributes="href context/absolute_url" tal:content="context/title">Title</a></h4>
+
+  <dl>
+    <tal:t tal:repeat="widget view/widgets/values">
+      <dt tal:attributes="class string:field-${widget/__name__}"
+          tal:condition="python:widget.__name__ not in ('title')"
+          tal:content="widget/label">Label</dt>
+      <dd tal:attributes="class string:field-${widget/__name__}"
+          tal:condition="python:widget.__name__ not in ('title')"
+          tal:content="structure widget/render"></dd>
+    </tal:t>
+  </dl>
+</div>

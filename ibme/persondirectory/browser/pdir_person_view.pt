@@ -11,9 +11,8 @@
     <metal:content-core define-macro="content-core">
 
       <ul class="persondirectory-listing">
-        <li tal:repeat="person view/personListing">
-          <div tal:define="ob person/getObject"
-               tal:content="structure ob/@@fragment" />
+        <li>
+          <div tal:content="structure context/@@fragment" />
         </li>
       </ul>
 
