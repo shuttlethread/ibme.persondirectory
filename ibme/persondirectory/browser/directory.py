@@ -6,6 +6,8 @@ from plone.dexterity.interfaces import IDexterityFTI
 
 from Products.Five import BrowserView
 
+WIDGET_NAME = 'ibme.persondirectory.widget.SuggestionFieldWidget'
+
 
 class DirectoryView(BrowserView):
     """Class for all directory views"""
@@ -39,10 +41,12 @@ class DirectoryView(BrowserView):
     def getFilterFields(self):
         """Get all fields (and titles) that use the SuggestionFieldWidget"""
         if getattr(self, 'filter_fields', None) is None:
-            schema = getUtility(IDexterityFTI, name='pdir_person').lookupSchema()
+            fti = getUtility(IDexterityFTI, name='pdir_person')
+            schema = fti.lookupSchema()
+            tags = schema.getTaggedValue(u'plone.autoform.widgets')
             self.filter_fields = [(k, schema[k].title) for (k, v)
-                in schema.getTaggedValue(u'plone.autoform.widgets').items()
-                if v == 'ibme.persondirectory.widget.SuggestionFieldWidget']
+                                  in tags.items()
+                                  if v == WIDGET_NAME]
         return self.filter_fields
 
     def generateFilterUrl(self, filter, value):
