@@ -12,7 +12,7 @@
 
       <ul class="persondirectory-listing">
         <li>
-          <div tal:content="structure context/@@fragment" />
+          <tal:t tal:content="structure context/@@fragment" />
         </li>
       </ul>
 

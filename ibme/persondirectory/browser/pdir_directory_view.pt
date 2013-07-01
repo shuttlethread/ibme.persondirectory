@@ -12,7 +12,7 @@
 
       <ul class="persondirectory-listing">
         <li tal:repeat="person view/personListing">
-          <div tal:define="ob person/getObject"
+          <tal:t tal:define="ob person/getObject"
                tal:content="structure ob/@@fragment" />
         </li>
       </ul>
