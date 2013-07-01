@@ -10,7 +10,7 @@ class DirectoryView(BrowserView):
     """Class for all directory views"""
     def personListing(self):
         """Get all person objects for this view"""
-        query = dict(sort_order='descending')
+        query = dict(portal_type='pdir_person')
 
         # Add any filters specified on the querystring
         for f in self.context.filter_fields:
