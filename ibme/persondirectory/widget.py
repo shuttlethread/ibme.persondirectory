@@ -31,6 +31,8 @@ class SuggestionWidget(TextWidget):
             portal_catalog.addIndex(self.__name__, 'FieldIndex')
         else:
             for v in portal_catalog.Indexes[self.__name__].uniqueValues():
+                if not(v):
+                    continue
                 items.append(dict(content=v, selected=(v == self.value)))
         return items
 
