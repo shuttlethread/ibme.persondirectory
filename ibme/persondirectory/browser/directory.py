@@ -6,6 +6,8 @@ from plone.dexterity.interfaces import IDexterityFTI
 
 from Products.Five import BrowserView
 
+from ibme.persondirectory.catalog import uniqueValues
+
 WIDGET_NAME = 'ibme.persondirectory.widget.SuggestionFieldWidget'
 
 
@@ -28,7 +30,7 @@ class DirectoryView(BrowserView):
         portal_catalog = self.context.portal_catalog
 
         for (name, title) in self.getFilterFields():
-            out[name] = portal_catalog.Indexes[name].uniqueValues()
+            out[name] = uniqueValues(portal_catalog, name)
         return out
 
     def getPersonFieldTitle(self, id):

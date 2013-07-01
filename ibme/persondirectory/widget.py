@@ -6,6 +6,7 @@ from z3c.form.browser.text import TextWidget
 from z3c.form.widget import FieldWidget
 
 from ibme.persondirectory import _
+from ibme.persondirectory.catalog import uniqueValues
 
 
 class ISuggestionWidget(ITextWidget):
@@ -26,14 +27,9 @@ class SuggestionWidget(TextWidget):
         items = [dict(value=self.noValueToken, selected=False,
                  content=_('Select an existing value...'))]
 
-        if self.__name__ not in portal_catalog.Indexes:
-            # Create the index now, items will get re-indexed as we edit
-            portal_catalog.addIndex(self.__name__, 'FieldIndex')
-        else:
-            for v in portal_catalog.Indexes[self.__name__].uniqueValues():
-                if not(v):
-                    continue
-                items.append(dict(content=v, selected=(v == self.value)))
+        for v in uniqueValues(portal_catalog, self.__name__):
+            items.append(dict(content=v, selected=(v == self.value)))
+
         return items
 
     def extract(self, default=NOVALUE):
