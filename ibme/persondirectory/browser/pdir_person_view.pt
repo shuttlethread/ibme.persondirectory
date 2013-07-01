@@ -10,11 +10,11 @@
   <metal:main fill-slot="content-core">
     <metal:content-core define-macro="content-core">
 
-      <ul class="persondirectory-listing">
-        <li>
+      <ul class="persondirectory-listing"><!--
+        --><li>
           <tal:t tal:content="structure context/@@fragment" />
-        </li>
-      </ul>
+        </li><!--
+      --></ul>
 
     </metal:content-core>
   </metal:main>
