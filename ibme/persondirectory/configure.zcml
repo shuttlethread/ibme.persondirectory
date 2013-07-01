@@ -3,6 +3,7 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="ibme.persondirectory">
 
     <includeDependencies package="." />
@@ -34,5 +35,16 @@
         name="ibme.persondirectory.personfieldsvocab"
         component=".behaviors.PersonFieldsVocab"
         />
+
+    <!-- Suggestion widget -->
+    <class class=".widget.SuggestionWidget">
+        <require permission="zope.Public"
+                 interface=".widget.ISuggestionWidget" />
+    </class>
+    <z3c:widgetTemplate
+        mode="input"
+        widget=".widget.ISuggestionWidget"
+        layer="z3c.form.interfaces.IFormLayer"
+        template="widget_templates/suggestion_input.pt" />
 
 </configure>
