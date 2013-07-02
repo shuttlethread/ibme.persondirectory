@@ -39,7 +39,10 @@ def fieldToFilter(fields):
     if len(fields) == 0:
         return dict()
     return dict(
-        pdir_keywords= ["%s:%s" % (k, v) for (k, v) in fields.items()]
+        pdir_keywords=dict(
+            query=["%s:%s" % (k, v) for (k, v) in fields.items()],
+            operator="and",
+        )
     )
 
 
