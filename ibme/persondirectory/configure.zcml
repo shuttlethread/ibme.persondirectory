@@ -42,6 +42,7 @@
         template="widget_templates/suggestion_input.pt" />
 
     <!-- Catalog -->
-    <adapter name="pdir_keywords" factory=".catalog.index_pdir_keywordsIPerson" />
+    <adapter name="pdir_keywords" factory=".catalog.index_pdir_keywords_IPerson" />
+    <adapter name="sortable_title" factory=".catalog.index_sortable_title_IPerson" />
 
 </configure>

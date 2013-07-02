@@ -1,3 +1,5 @@
+import re
+
 from zope.component import getUtility
 
 from plone.dexterity.interfaces import IDexterityFTI
@@ -9,13 +11,26 @@ WIDGET_NAME = 'ibme.persondirectory.widget.SuggestionFieldWidget'
 
 
 @indexer(IPerson)
-def index_pdir_keywordsIPerson(object, **kw):
+def index_pdir_keywords_IPerson(object, **kw):
     """Crush all filter fields down to keywords"""
     out = []
     for (name, title) in getFilterFields():
         if getattr(object, name, None):
             out.append("%s:%s" % (name, getattr(object, name)))
     return out
+
+
+@indexer(IPerson)
+def index_sortable_title_IPerson(object, **kw):
+    """Swap surname and firstname"""
+    if object.__parent__.sorting == 'surname':
+        # Assume title is a name, pull last word (surname) off and put it at
+        # the start
+        m = re.search('(.*) (.*)', object.title)
+        if m:
+            return " ".join(m.groups()[::-1])
+    # Sort by title
+    return object.title
 
 
 def uniqueValues(portal_catalog, index):
