@@ -4,9 +4,9 @@
       <title>Entry Title</title>
       <description>Enter a title for the image</description>
     </field>
-    <field name="portrait" type="plone.namedfile.field.NamedBlobImage">
-      <title>Portrait</title>
-      <description>Upload an image of the user</description>
+    <field name="image" type="plone.namedfile.field.NamedBlobImage">
+      <title>Entry Image</title>
+      <description>Upload an image for the entry</description>
       <required>False</required>
     </field>
   </schema>

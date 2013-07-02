@@ -3,7 +3,7 @@
  <object name="imaging_properties" meta_type="Plone Property Sheet">
   <property name="title">Image handling properties</property>
   <property name="allowed_sizes" type="lines" purge="False">
-   <element value="pdir-portrait 1000:1000"/>
+   <element value="pdir-image 1000:1000"/>
   </property>
  </object>
 </object>
