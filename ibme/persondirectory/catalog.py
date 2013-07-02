@@ -63,7 +63,7 @@ def fieldToFilter(fields):
 
 def getFilterFields():
     """Fetch all fields that use SuggestionFieldWidget"""
-    fti = getUtility(IDexterityFTI, name='pdir_person')
+    fti = getUtility(IDexterityFTI, name='pdir_entry')
     schema = fti.lookupSchema()
     tags = schema.getTaggedValue(u'plone.autoform.widgets')
 

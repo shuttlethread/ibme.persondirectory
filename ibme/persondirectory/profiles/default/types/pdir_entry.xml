@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<object name="ibme.persondirectory.pdir_person" meta_type="Dexterity FTI"
+<object name="ibme.persondirectory.pdir_entry" meta_type="Dexterity FTI"
    i18n:domain="ibme.persondirectory" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
  <!-- Basic metadata -->
- <property name="title" i18n:translate="">Person</property>
- <property name="description" i18n:translate="">Add a person to the directory</property>
+ <property name="title" i18n:translate="">Directory entry</property>
+ <property name="description" i18n:translate="">Add an entry to the directory</property>
  <property name="content_icon">user.png</property>
  <property name="allow_discussion">False</property>
 
@@ -18,7 +18,7 @@
  <property name="klass">plone.dexterity.content.Item</property>
 
  <!-- Schema interface -->
- <property name="model_file">ibme.persondirectory.models:pdir_person.xml</property>
+ <property name="model_file">ibme.persondirectory.models:pdir_entry.xml</property>
  <property name="model_source"></property>
 
  <!-- Behaviors -->

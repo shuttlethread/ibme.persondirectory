@@ -13,7 +13,7 @@ class DirectoryView(BrowserView):
         query = dict(
             sort_on='sortable_title',
             sort_order='ascending',
-            portal_type='pdir_person')
+            portal_type='pdir_entry')
 
         # Add any filters specified on the querystring
         query.update(fieldToFilter(self.getFacets()))

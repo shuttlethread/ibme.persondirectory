@@ -21,14 +21,14 @@
       for="..behaviors.IPerson"
       name="view"
       class="plone.dexterity.browser.view.DefaultView"
-      template="pdir_person_view.pt"
+      template="pdir_entry_view.pt"
       permission="zope2.View"
       />
   <browser:page
       for="..behaviors.IPerson"
       name="fragment"
       class="plone.dexterity.browser.view.DefaultView"
-      template="pdir_person_fragment.pt"
+      template="pdir_entry_fragment.pt"
       permission="zope2.View"
       />
 

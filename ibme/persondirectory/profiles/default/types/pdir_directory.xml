@@ -4,7 +4,7 @@
 
  <!-- Basic metadata -->
  <property name="title" i18n:translate="">Person directory</property>
- <property name="description" i18n:translate="">Filterable directory of people</property>
+ <property name="description" i18n:translate="">Faceted directory</property>
  <property name="content_icon">book_icon.png</property>
  <property name="allow_discussion">False</property>
 
@@ -12,7 +12,7 @@
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
-     <element value="pdir_person" />
+     <element value="pdir_entry" />
  </property>
 
  <!-- Class used for content items -->
