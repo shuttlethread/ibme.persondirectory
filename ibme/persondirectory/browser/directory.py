@@ -16,12 +16,24 @@ class DirectoryView(BrowserView):
             portal_type='pdir_person')
 
         # Add any filters specified on the querystring
-        query.update(fieldToFilter(dict(
-            (n, self.request[n])
-            for (n, t) in self.getFilterFields()
-            if n in self.request)))
+        query.update(fieldToFilter(self.getFacets()))
 
         return self.context.restrictedTraverse('@@folderListing')(**query)
+
+    def getTitle(self):
+        """Return page title, with headings attached"""
+        facets = ", ".join(self.getFacets().values())
+        if len(facets) > 0:
+            return self.context.title + ": " + facets
+        else:
+            return self.context.title
+
+    def getFacets(self):
+        """Get the asked-for facets"""
+        return dict(
+            (n, self.request[n])
+            for (n, t) in self.getFilterFields()
+            if n in self.request)
 
     def uniqueFilterEntries(self):
         """Return a dict of unique entries for each filter"""
