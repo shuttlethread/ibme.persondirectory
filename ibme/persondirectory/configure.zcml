@@ -41,4 +41,7 @@
         layer="z3c.form.interfaces.IFormLayer"
         template="widget_templates/suggestion_input.pt" />
 
+    <!-- Catalog -->
+    <adapter name="pdir_keywords" factory=".catalog.index_pdir_keywordsIPerson" />
+
 </configure>

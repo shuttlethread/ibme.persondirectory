@@ -1,25 +1,46 @@
 from zope.component import getUtility
 
 from plone.dexterity.interfaces import IDexterityFTI
+from plone.indexer.decorator import indexer
+
+from ibme.persondirectory.behaviors import IPerson
 
 WIDGET_NAME = 'ibme.persondirectory.widget.SuggestionFieldWidget'
+
+
+@indexer(IPerson)
+def index_pdir_keywordsIPerson(object, **kw):
+    """Crush all filter fields down to keywords"""
+    out = []
+    for (name, title) in getFilterFields():
+        if getattr(object, name, None):
+            out.append("%s:%s" % (name, getattr(object, name)))
+    return out
 
 
 def uniqueValues(portal_catalog, index):
     """Return the unique values for an index, creating it if necessary"""
     # If the index doesn't exist, create it and return nothing, as there can't
     # be any content yet
-    if index not in portal_catalog.Indexes:
-        portal_catalog.addIndex(index, 'FieldIndex')
+    if 'pdir_keywords' not in portal_catalog.Indexes:
+        portal_catalog.addIndex('pdir_keywords', 'KeywordIndex')
         return []
 
-    # Return all non-empty items
-    return [i for i in portal_catalog.Indexes[index].uniqueValues() if i]
+    out = []
+    for v in portal_catalog.Indexes['pdir_keywords'].uniqueValues():
+        if not v.startswith(index + ':'):
+            continue
+        out.append(v.replace(index + ':', '', 1))
+    return out
 
 
 def fieldToFilter(fields):
     """Turn field request into a filter"""
-    return fields
+    if len(fields) == 0:
+        return dict()
+    return dict(
+        pdir_keywords= ["%s:%s" % (k, v) for (k, v) in fields.items()]
+    )
 
 
 def getFilterFields():

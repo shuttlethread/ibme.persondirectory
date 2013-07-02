@@ -26,6 +26,7 @@ setup(
         'setuptools',
         'plone.app.contentlisting',
         'plone.app.dexterity',
+        'plone.indexer',
         ],
     extras_require={
         'test': [
