@@ -6,7 +6,9 @@
     xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="ibme.persondirectory">
 
-    <includeDependencies package="." />
+    <include package="plone.app.contentlisting" />
+    <include package="plone.app.dexterity" />
+    <include package="plone.indexer" />
 
     <include package=".browser" file="configure.zcml" />
 
