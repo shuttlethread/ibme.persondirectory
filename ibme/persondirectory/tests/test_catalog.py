@@ -125,7 +125,8 @@ class CatalogTest(IntegrationTestCase):
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
 
-        # No filter fields yet
+        # Default schema has none
+        self.setDefaultEntrySchema()
         self.assertEquals(getFilterFields(), [])
 
         # Full-fat schema defines a few

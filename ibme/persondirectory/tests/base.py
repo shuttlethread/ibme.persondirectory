@@ -38,6 +38,13 @@ DIRECTORY_FUNCTIONAL_TESTING = FunctionalTesting(
 
 
 class TestCase(unittest.TestCase):
+    def setDefaultEntrySchema(self):
+        """Switch back to default schema"""
+        fti = getUtility(IDexterityFTI, name='pdir_entry')
+        fti.manage_changeProperties(model_source=None)
+        #NB: These aren't getting cleared by the above. Bug?
+        fti.lookupSchema().setTaggedValue(u'plone.autoform.widgets', {})
+
     def setFullFatEntrySchema(self):
         """Switch schemas for one with lots of fields"""
         fti = getUtility(IDexterityFTI, name='pdir_entry')
