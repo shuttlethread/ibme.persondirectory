@@ -19,6 +19,11 @@
         description="Dexterity-based person directory"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
+    <genericsetup:importStep
+        name="ibme.persondirectory"
+        title="Create indexes for ibme.persondirectory"
+        description=""
+        handler="ibme.persondirectory.setuphandlers.import_various" />
 
     <plone:behavior
         title="Person directory"

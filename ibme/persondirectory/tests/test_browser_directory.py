@@ -1,7 +1,5 @@
 from plone.app.testing import setRoles, login, TEST_USER_NAME, TEST_USER_ID
 
-from Products.CMFCore.utils import getToolByName
-
 from .base import IntegrationTestCase
 
 
@@ -41,8 +39,6 @@ class ContentTypeTest(IntegrationTestCase):
     def test_personListing(self):
         """Main content listings"""
         portal = self.layer['portal']
-        catalog = getToolByName(portal, 'portal_catalog')
-        catalog.addIndex('pdir_keywords', 'KeywordIndex')
         self.fillFacetFields()
 
         # Show everything by default
@@ -51,7 +47,6 @@ class ContentTypeTest(IntegrationTestCase):
             ['ent2', 'ent1'])
 
         # Sorting option is honoured
-        portal = self.layer['portal']
         portal['dir'].sorting = "surname"
         portal['dir']['ent1'].reindexObject()
         portal['dir']['ent2'].reindexObject()

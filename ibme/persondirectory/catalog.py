@@ -35,12 +35,6 @@ def index_sortable_title_IPerson(object, **kw):
 
 def uniqueValues(portal_catalog, index):
     """Return the unique values for an index, creating it if necessary"""
-    # If the index doesn't exist, create it and return nothing, as there can't
-    # be any content yet
-    if 'pdir_keywords' not in portal_catalog.Indexes:
-        portal_catalog.addIndex('pdir_keywords', 'KeywordIndex')
-        return []
-
     out = []
     for v in portal_catalog.Indexes['pdir_keywords'].uniqueValues():
         if not v.startswith(index + ':'):
