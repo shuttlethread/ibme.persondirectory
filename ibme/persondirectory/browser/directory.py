@@ -8,8 +8,8 @@ from ibme.persondirectory.catalog import uniqueValues, fieldToFilter, \
 
 class DirectoryView(BrowserView):
     """Class for all directory views"""
-    def personListing(self):
-        """Get all person objects for this view"""
+    def entryListing(self):
+        """Get all entries for this view"""
         query = dict(
             sort_on='sortable_title',
             sort_order='ascending',
@@ -44,8 +44,8 @@ class DirectoryView(BrowserView):
             out[name] = uniqueValues(portal_catalog, name)
         return out
 
-    def getPersonFieldTitle(self, id):
-        """Return the person field's title"""
+    def getEntryFieldTitle(self, id):
+        """Return the title of the given field"""
         for (name, title) in self._getFilterFields():
             if name == id:
                 return title

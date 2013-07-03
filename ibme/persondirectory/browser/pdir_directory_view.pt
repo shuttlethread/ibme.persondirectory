@@ -18,8 +18,8 @@
     <metal:content-core define-macro="content-core">
 
       <ul class="persondirectory-listing"><!--
-        --><li tal:repeat="person view/personListing">
-          <tal:t tal:define="ob person/getObject"
+        --><li tal:repeat="entry view/entryListing">
+          <tal:t tal:define="ob entry/getObject"
                tal:content="structure ob/@@fragment" />
         </li><!--
       --></ul>
@@ -35,7 +35,7 @@
           tal:define="filters view/uniqueFilterEntries">
         <dd><a tal:attributes="href context/absolute_url">Show all</a></dd>
         <tal:t tal:repeat="filter_id filters/keys">
-          <dt tal:define="filter_title python:view.getPersonFieldTitle(filter_id)"
+          <dt tal:define="filter_title python:view.getEntryFieldTitle(filter_id)"
               tal:content="string:Filter by ${filter_title}">Filter by...</dt>
           <tal:t tal:repeat="filter_value python:filters[filter_id]">
             <dd tal:attributes="class python:'selected' if request.get(filter_id, None) == filter_value else '';">

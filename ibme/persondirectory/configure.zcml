@@ -16,7 +16,7 @@
         name="default"
         title="Person Directory"
         directory="profiles/default"
-        description="Dexterity-based person directory"
+        description="Dexterity-based directory"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
     <genericsetup:importStep
@@ -26,15 +26,15 @@
         handler="ibme.persondirectory.setuphandlers.import_various" />
 
     <plone:behavior
-        title="Person directory"
+        title="Directory"
         description="Marker interface for person directory root"
-        provides=".behaviors.IPersonDirectory"
+        provides=".behaviors.IDirectory"
         />
 
     <plone:behavior
-        title="Person"
-        description="Marker interface for person directory people"
-        provides=".behaviors.IPerson"
+        title="Directory entry"
+        description="Marker interface for person directory entries"
+        provides=".behaviors.IEntry"
         />
 
     <!-- Suggestion widget -->
@@ -49,7 +49,7 @@
         template="widget_templates/suggestion_input.pt" />
 
     <!-- Catalog -->
-    <adapter name="pdir_keywords" factory=".catalog.index_pdir_keywords_IPerson" />
-    <adapter name="sortable_title" factory=".catalog.index_sortable_title_IPerson" />
+    <adapter name="pdir_keywords" factory=".catalog.index_pdir_keywords_IEntry" />
+    <adapter name="sortable_title" factory=".catalog.index_sortable_title_IEntry" />
 
 </configure>

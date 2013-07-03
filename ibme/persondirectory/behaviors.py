@@ -8,9 +8,8 @@ from plone.supermodel import model
 from ibme.persondirectory import _
 
 
-class IPersonDirectory(model.Schema):
-    """The top of a QnA form
-    """
+class IDirectory(model.Schema):
+    """The directory itself"""
     sorting = schema.Choice(
         title=_(u'Sorting of results'),
         description=_(u'Choose how you want the results sorted') +
@@ -22,10 +21,9 @@ class IPersonDirectory(model.Schema):
             SimpleTerm(value='surname', title=_(u'By title, name order')),
         ]),
     )
-alsoProvides(IPersonDirectory, interfaces.IFormFieldProvider)
+alsoProvides(IDirectory, interfaces.IFormFieldProvider)
 
 
-class IPerson(model.Schema):
-    """The top of a QnA form
-    """
-alsoProvides(IPerson, interfaces.IFormFieldProvider)
+class IEntry(model.Schema):
+    """An entry within the directory"""
+alsoProvides(IEntry, interfaces.IFormFieldProvider)

@@ -10,7 +10,7 @@ from ibme.persondirectory.catalog import fieldToFilter, \
 
 class CatalogTest(IntegrationTestCase):
 
-    def test_index_pdir_keywords_IPerson(self):
+    def test_index_pdir_keywords_IEntry(self):
         """Make sure indexers do what we expect"""
         portal = self.layer['portal']
         catalog = getToolByName(portal, 'portal_catalog')
@@ -64,7 +64,7 @@ class CatalogTest(IntegrationTestCase):
             )))
 
     def test_uniqueValues(self):
-        """Test index_pdir_keywords_IPerson will index keywords"""
+        """Test index_pdir_keywords_IEntry will index keywords"""
         portal = self.layer['portal']
         catalog = getToolByName(portal, 'portal_catalog')
         setRoles(portal, TEST_USER_ID, ['Manager'])

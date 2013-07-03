@@ -23,7 +23,7 @@
 
  <!-- Behaviors -->
  <property name="behaviors">
-     <element value="ibme.persondirectory.behaviors.IPerson"/>
+     <element value="ibme.persondirectory.behaviors.IEntry"/>
      <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
      <element value="plone.app.dexterity.behaviors.metadata.IPublication"/>
      <element value="plone.app.dexterity.behaviors.metadata.IOwnership"/>

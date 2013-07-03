@@ -4,28 +4,28 @@
     i18n_domain="ibme.persondirectory">
 
   <browser:page
-      for="..behaviors.IPersonDirectory"
+      for="..behaviors.IDirectory"
       name="view"
       class=".directory.DirectoryView"
       template="pdir_directory_view.pt"
       permission="zope2.View"
       />
   <browser:page
-      for="..behaviors.IPersonDirectory"
+      for="..behaviors.IDirectory"
       name="unique-entries"
       class=".directory.UniqueEntriesView"
       permission="zope2.View"
       />
 
   <browser:page
-      for="..behaviors.IPerson"
+      for="..behaviors.IEntry"
       name="view"
       class="plone.dexterity.browser.view.DefaultView"
       template="pdir_entry_view.pt"
       permission="zope2.View"
       />
   <browser:page
-      for="..behaviors.IPerson"
+      for="..behaviors.IEntry"
       name="fragment"
       class="plone.dexterity.browser.view.DefaultView"
       template="pdir_entry_fragment.pt"

@@ -36,14 +36,14 @@ class ContentTypeTest(IntegrationTestCase):
         portal['dir']['ent2'].research_group = "Twitter"
         portal['dir']['ent2'].reindexObject()
 
-    def test_personListing(self):
+    def test_entryListing(self):
         """Main content listings"""
         portal = self.layer['portal']
         self.fillFacetFields()
 
         # Show everything by default
         self.assertEquals(
-            [x.id for x in self.view.personListing()],
+            [x.id for x in self.view.entryListing()],
             ['ent2', 'ent1'])
 
         # Sorting option is honoured
@@ -51,14 +51,14 @@ class ContentTypeTest(IntegrationTestCase):
         portal['dir']['ent1'].reindexObject()
         portal['dir']['ent2'].reindexObject()
         self.assertEquals(
-            [x.id for x in self.view.personListing()],
+            [x.id for x in self.view.entryListing()],
             ['ent1', 'ent2'])
 
         # Can filter too
         request = self.layer['request']
         request.set('research_group', 'Cat pictures')
         self.assertEquals(
-            [x.id for x in self.view.personListing()],
+            [x.id for x in self.view.entryListing()],
             ['ent1'])
 
     def test_getTitle(self):
@@ -96,13 +96,13 @@ class ContentTypeTest(IntegrationTestCase):
                 research_group=["Cat pictures", "Twitter"],
             ))
 
-    def test_getPersonFieldTitle(self):
+    def test_getEntryFieldTitle(self):
         """Get titles from field"""
         self.assertEquals(
-            self.view.getPersonFieldTitle('position'),
+            self.view.getEntryFieldTitle('position'),
             u'Position')
         self.assertEquals(
-            self.view.getPersonFieldTitle('research_group'),
+            self.view.getEntryFieldTitle('research_group'),
             u'Research Group')
 
     def test_generateFilterUrl(self):

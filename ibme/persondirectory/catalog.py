@@ -5,13 +5,13 @@ from zope.component import getUtility
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.indexer.decorator import indexer
 
-from ibme.persondirectory.behaviors import IPerson
+from ibme.persondirectory.behaviors import IEntry
 
 WIDGET_NAME = 'ibme.persondirectory.widget.SuggestionFieldWidget'
 
 
-@indexer(IPerson)
-def index_pdir_keywords_IPerson(object, **kw):
+@indexer(IEntry)
+def index_pdir_keywords_IEntry(object, **kw):
     """Crush all filter fields down to keywords"""
     out = []
     for (name, title) in getFilterFields():
@@ -20,8 +20,8 @@ def index_pdir_keywords_IPerson(object, **kw):
     return out
 
 
-@indexer(IPerson)
-def index_sortable_title_IPerson(object, **kw):
+@indexer(IEntry)
+def index_sortable_title_IEntry(object, **kw):
     """Swap surname and firstname"""
     if object.__parent__.sorting == 'surname':
         # Assume title is a name, pull last word (surname) off and put it at
