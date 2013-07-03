@@ -32,7 +32,7 @@ class DirectoryView(BrowserView):
         """Get the asked-for facets"""
         return dict(
             (n, self.request[n])
-            for (n, t) in self.getFilterFields()
+            for (n, t) in self._getFilterFields()
             if n in self.request)
 
     def uniqueFilterEntries(self):
@@ -40,18 +40,18 @@ class DirectoryView(BrowserView):
         out = dict()
         portal_catalog = self.context.portal_catalog
 
-        for (name, title) in self.getFilterFields():
+        for (name, title) in self._getFilterFields():
             out[name] = uniqueValues(portal_catalog, name)
         return out
 
     def getPersonFieldTitle(self, id):
         """Return the person field's title"""
-        for (name, title) in self.getFilterFields():
+        for (name, title) in self._getFilterFields():
             if name == id:
                 return title
         raise ValueError(id)
 
-    def getFilterFields(self):
+    def _getFilterFields(self):
         """Get all fields (and titles) that use the SuggestionFieldWidget"""
         if getattr(self, 'filter_fields', None) is None:
             self.filter_fields = getFilterFields()
