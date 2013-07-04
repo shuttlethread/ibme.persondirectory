@@ -2,8 +2,8 @@ Introduction
 ============
 
 A simple dexterity-based directory with faceted search. Developed initially
-as a directory of academic staff for the IBME website. This is designed to be
-used along with a Diazo theme to present the results.
+as a directory of academic staff. This is designed to be used along with a
+Diazo theme to present the results.
 
 Installation
 ============
