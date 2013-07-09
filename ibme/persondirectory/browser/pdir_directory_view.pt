@@ -31,16 +31,14 @@
     <metal:column_two_slot define-macro="column_two_slot">
       <div id="portal-column-two" class="cell width-1:4 position-3:4">
 
-      <dl class="persondirectory-filters"
-          tal:define="filters view/uniqueFilterEntries">
+      <dl class="persondirectory-filters">
         <dd><a tal:attributes="href context/absolute_url">Show all</a></dd>
-        <tal:t tal:repeat="filter_id filters/keys">
-          <dt tal:define="filter_title python:view.getEntryFieldTitle(filter_id)"
-              tal:content="string:Filter by ${filter_title}">Filter by...</dt>
-          <tal:t tal:repeat="filter_value python:filters[filter_id]">
-            <dd tal:attributes="class python:'selected' if request.get(filter_id, None) == filter_value else '';">
-              <a tal:attributes="href python:view.generateFilterUrl(filter_id, filter_value)"
-                 tal:content="filter_value">Filter</a>
+        <tal:t tal:repeat="filter view/getFilters">
+          <dt tal:content="string:Filter by ${filter/title}">Filter by...</dt>
+          <tal:t tal:repeat="filter_value python:filter['values']">
+            <dd tal:attributes="class python:'selected' if filter_value['selected'] else '';">
+              <a tal:attributes="href filter_value/url"
+                 tal:content="filter_value/title">Filter</a>
             </dd>
           </tal:t>
         </tal:t>

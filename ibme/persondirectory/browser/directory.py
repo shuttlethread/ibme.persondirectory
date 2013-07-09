@@ -35,31 +35,38 @@ class DirectoryView(BrowserView):
             for (n, t) in self._getFilterFields()
             if n in self.request)
 
-    def uniqueFilterEntries(self):
-        """Return a dict of unique entries for each filter"""
-        out = dict()
-        portal_catalog = self.context.portal_catalog
-
-        for (name, title) in self._getFilterFields():
-            out[name] = uniqueValues(portal_catalog, name)
-        return out
-
-    def getEntryFieldTitle(self, id):
-        """Return the title of the given field"""
-        for (name, title) in self._getFilterFields():
-            if name == id:
-                return title
-        raise ValueError(id)
-
     def _getFilterFields(self):
         """Get all fields (and titles) that use the SuggestionFieldWidget"""
         if getattr(self, 'filter_fields', None) is None:
             self.filter_fields = getFilterFields()
         return self.filter_fields
 
-    def generateFilterUrl(self, filter, value):
-        """Return a URL with filter params added"""
-        return self.context.absolute_url() + '?' + urlencode({filter: value})
+    def getFilters(self):
+        """
+        Return a deep structure of the form
+            [
+                dict(title='Filter 1', id='f1' values=[
+                    dict(title='Value 1', uri='?f1=v1', selected=True),
+                    dict(title='Value 2', uri='?f1=v2', selected=False),
+                ]),
+            ]
+        """
+        portal_catalog = self.context.portal_catalog
+        def filterValues(name):
+            """Return all values for each filter"""
+            urlBase = self.context.absolute_url() + '?'
+            return [dict(
+                title=val,
+                url=urlBase + urlencode({name: val}),
+                selected=(self.request.get(name, None) == val),
+            ) for val in sorted(uniqueValues(portal_catalog, name))]
+
+        # Get filters, sorted by title
+        return sorted([
+            dict(id=name, title=title, values=filterValues(name))
+            for (name, title)
+            in self._getFilterFields()
+        ], key=lambda k: k['title'])
 
 
 class UniqueEntriesView(BrowserView):

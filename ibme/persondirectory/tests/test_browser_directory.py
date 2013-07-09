@@ -83,30 +83,19 @@ class ContentTypeTest(IntegrationTestCase):
             self.view.getFacets(),
             dict(position="Desk"))
 
-    def test_uniqueFilterEntries(self):
-        """Used to populate facets"""
-        self.assertEquals(
-            self.view.uniqueFilterEntries(),
-            {'position': [], 'research_group': []})
-
+    def test_getFilters(self):
+        """Get a data structure to generate fields from"""
         self.fillFacetFields()
         self.assertEquals(
-            self.view.uniqueFilterEntries(), dict(
-                position=["Desk"],
-                research_group=["Cat pictures", "Twitter"],
-            ))
-
-    def test_getEntryFieldTitle(self):
-        """Get titles from field"""
-        self.assertEquals(
-            self.view.getEntryFieldTitle('position'),
-            u'Position')
-        self.assertEquals(
-            self.view.getEntryFieldTitle('research_group'),
-            u'Research Group')
-
-    def test_generateFilterUrl(self):
-        """Parameters should be encoded"""
-        self.assertEquals(
-            self.view.generateFilterUrl('camel', '2 humps please'),
-            'http://nohost/plone/dir?camel=2+humps+please')
+            self.view.getFilters(), [
+            {'id': 'position', 'title': u'Position', 'values': [
+                {'selected': False, 'title': 'Desk',
+                 'url': 'http://nohost/plone/dir?position=Desk'}
+            ]},
+            {'id': 'research_group', 'title': u'Research Group', 'values': [
+                {'selected': False, 'title': 'Cat pictures',
+                 'url': 'http://nohost/plone/dir?research_group=Cat+pictures'},
+                {'selected': False, 'title': 'Twitter',
+                 'url': 'http://nohost/plone/dir?research_group=Twitter'}
+            ]}
+        ])
