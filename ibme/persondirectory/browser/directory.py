@@ -53,6 +53,7 @@ class DirectoryView(BrowserView):
             ]
         """
         portal_catalog = self.context.portal_catalog
+
         def filterValues(name):
             """Return all values for each filter"""
             urlBase = self.context.absolute_url() + '?'
