@@ -2,6 +2,7 @@ from urllib import urlencode
 
 from Products.Five import BrowserView
 
+from ibme.persondirectory.behaviors import IEntry
 from ibme.persondirectory.catalog import uniqueValues, fieldToFilter, \
     getFilterFields
 
@@ -13,7 +14,7 @@ class DirectoryView(BrowserView):
         query = dict(
             sort_on='sortable_title',
             sort_order='ascending',
-            portal_type='pdir_entry')
+            object_provides=IEntry.__identifier__)
 
         # Add any filters specified on the querystring
         query.update(fieldToFilter(self.getFacets()))
