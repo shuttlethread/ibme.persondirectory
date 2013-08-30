@@ -81,7 +81,7 @@ class CatalogTest(IntegrationTestCase):
             type_name="pdir_directory",
             id="dir",
             title="UT Directory",
-            filter_fields=['position', 'research_group'],
+            filter_fields=['position', 'research_group', 'affiliation'],
         )
         self.assertEquals(portal['dir'].sorting, "title")
         portal['dir'].invokeFactory(
@@ -99,9 +99,11 @@ class CatalogTest(IntegrationTestCase):
         # Enter values, should start appearing
         portal['dir']['ent1'].position = "Desk"
         portal['dir']['ent1'].research_group = "Cat pictures"
+        portal['dir']['ent1'].affiliation = ["Red", "Violet"]
         portal['dir']['ent1'].reindexObject()
         portal['dir']['ent2'].position = "Desk"
         portal['dir']['ent2'].research_group = "Twitter"
+        portal['dir']['ent2'].affiliation = ["Green", "Violet", "Blue"]
         portal['dir']['ent2'].reindexObject()
         self.assertEquals(
             uniqueValues(catalog, 'position'),
@@ -109,6 +111,9 @@ class CatalogTest(IntegrationTestCase):
         self.assertEquals(
             uniqueValues(catalog, 'research_group'),
             ["Cat pictures", "Twitter"])
+        self.assertEquals(
+            uniqueValues(catalog, 'affiliation'),
+            ['Blue', 'Green', 'Red', 'Violet'])
         self.assertEquals(uniqueValues(catalog, 'dont_exist'), [])
 
         # Change again

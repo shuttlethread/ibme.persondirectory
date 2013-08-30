@@ -81,6 +81,18 @@ class TestCase(unittest.TestCase):
       <title>Research Group</title>
       <form:widget type="ibme.persondirectory.widget.SuggestionFieldWidget"/>
     </field>
+    <field name="affiliation" type="zope.schema.Set"
+           form:widget="z3c.form.browser.checkbox.CheckBoxFieldWidget">
+      <title>Affiliation</title>
+      <value_type type="zope.schema.Choice">
+        <values>
+          <element>Red</element>
+          <element>Green</element>
+          <element>Blue</element>
+          <element>Violet</element>
+        </values>
+      </value_type>
+    </field>
   </schema>
 </model>
         """)
