@@ -28,17 +28,28 @@ edited or new fields added. To do this:
 Add as many fields as you require, and/or alter the title/description of the
 existing fields.
 
-If you would like "department" to be sortable with facets (i.e you can filter
-the entries with links down the right hand side), then you need to create a
-TextLine field that uses the ``SuggestionFieldWidget``. To do this you need to
-alter the schema XML (click "Edit XML Field Model") and change it to::
+Once set up, you can add a Person directory anywhere to your site using "Add new".
+
+Facets
+------
+
+If you would like the "department" field you configured earlier to be sortable
+with facets (i.e you can filter the entries with links down the right hand
+side), then you need to select in in the directories' "Fields to filter by"
+list.
+
+Suggestion Fields
+-----------------
+
+If a field is selected as a facet, then you can also use the
+``SuggestionFieldWidget`` on a TextLine field to show previously used values.
+To do this you need to alter the entry schema XML (click "Edit XML Field Model")
+and change it to::
 
     <field name="research_group" type="zope.schema.TextLine">
       <title>Research Group</title>
       <form:widget type="ibme.persondirectory.widget.SuggestionFieldWidget"/>
     </field>
-
-Once set up, you can add a Person directory anywhere to your site using "Add new"
 
 Entry images
 ------------
@@ -59,7 +70,7 @@ Credits
 
 Authors:
 
-* Jamie Lentin [lentinj]
+* Jamie Lentin [lentinj], http://shuttlethread.com
 
 Developed as part of the `Oxford IBME website <http://www.ibme.ox.ac.uk/>`__.
 
