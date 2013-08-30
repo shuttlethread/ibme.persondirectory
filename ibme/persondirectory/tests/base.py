@@ -15,7 +15,8 @@ class DirectoryFixture(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         import ibme.persondirectory
-        xmlconfig.include(configurationContext, 'configure.zcml', ibme.persondirectory)
+        xmlconfig.include(configurationContext, 'configure.zcml',
+                          ibme.persondirectory)
         configurationContext.execute_actions()
 
     def setUpPloneSite(self, portal):
@@ -29,12 +30,10 @@ FIXTURE = DirectoryFixture()
 
 DIRECTORY_INTEGRATION_TESTING = IntegrationTesting(
     bases=(FIXTURE,),
-    name="ibme.persondirectory:Integration",
-    )
+    name="ibme.persondirectory:Integration")
 DIRECTORY_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE,),
-    name="ibme.persondirectory:Functional",
-    )
+    name="ibme.persondirectory:Functional")
 
 
 class TestCase(unittest.TestCase):
@@ -96,6 +95,7 @@ class TestCase(unittest.TestCase):
   </schema>
 </model>
         """)
+
 
 class IntegrationTestCase(TestCase):
     layer = DIRECTORY_INTEGRATION_TESTING
