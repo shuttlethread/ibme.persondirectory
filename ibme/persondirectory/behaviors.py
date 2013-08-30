@@ -26,8 +26,7 @@ class IDirectory(model.Schema):
 
     sorting = schema.Choice(
         title=_(u'Sorting of results'),
-        description=_(u'Choose how you want the results sorted') +
-        '(TODO: You need to re-index sortable_index manually)',
+        description=_(u'Choose how you want the results sorted'),
         required=True,
         default='title',
         vocabulary=SimpleVocabulary([

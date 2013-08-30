@@ -43,6 +43,11 @@
         component=".behaviors.EntryFieldsVocab"
         />
 
+    <subscriber
+       for=".behaviors.IDirectory
+            zope.lifecycleevent.IObjectModifiedEvent"
+       handler=".events.directoryModifiedHandler" />
+
     <!-- Suggestion widget -->
     <class class=".widget.SuggestionWidget">
         <require permission="zope.Public"

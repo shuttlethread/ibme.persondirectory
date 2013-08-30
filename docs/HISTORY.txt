@@ -8,6 +8,8 @@ Changelog
   select which should be used as facets
   [lentinj]
 
+- Reindex all content below whenever a directory object is changed
+  [lentinj]
 
 1.0 (2013-08-01)
 ----------------
