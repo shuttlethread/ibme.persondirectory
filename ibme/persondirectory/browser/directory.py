@@ -1,10 +1,13 @@
 from urllib import urlencode
 
+from zope.component import getUtility
+
+from plone.dexterity.interfaces import IDexterityFTI
+
 from Products.Five import BrowserView
 
 from ibme.persondirectory.behaviors import IEntry
-from ibme.persondirectory.catalog import uniqueValues, fieldToFilter, \
-    getFilterFields
+from ibme.persondirectory.catalog import uniqueValues, fieldToFilter
 
 
 class DirectoryView(BrowserView):
@@ -39,7 +42,13 @@ class DirectoryView(BrowserView):
     def _getFilterFields(self):
         """Get all fields (and titles) that use the SuggestionFieldWidget"""
         if getattr(self, 'filter_fields', None) is None:
-            self.filter_fields = getFilterFields()
+            fti = getUtility(IDexterityFTI, name='pdir_entry')
+            schema = fti.lookupSchema()
+            self.filter_fields = [
+                (n, schema[n].title)
+                for n
+                in self.context.filter_fields
+            ]
         return self.filter_fields
 
     def getFilters(self):

@@ -37,6 +37,12 @@
         provides=".behaviors.IEntry"
         />
 
+    <utility
+        provides="zope.schema.interfaces.IVocabularyFactory"
+        name="ibme.persondirectory.entryfieldsvocab"
+        component=".behaviors.EntryFieldsVocab"
+        />
+
     <!-- Suggestion widget -->
     <class class=".widget.SuggestionWidget">
         <require permission="zope.Public"

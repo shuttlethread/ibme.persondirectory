@@ -1,8 +1,5 @@
 import re
 
-from zope.component import getUtility
-
-from plone.dexterity.interfaces import IDexterityFTI
 from plone.indexer.decorator import indexer
 
 from ibme.persondirectory.behaviors import IEntry
@@ -14,8 +11,13 @@ WIDGET_NAME = 'ibme.persondirectory.widget.SuggestionFieldWidget'
 def index_pdir_keywords_IEntry(object, **kw):
     """Crush all filter fields down to keywords"""
     out = []
-    for (name, title) in getFilterFields():
-        if getattr(object, name, None):
+    for name in object.aq_parent.filter_fields:
+        if getattr(object, name, None) is None:
+            continue
+        elif hasattr(getattr(object, name), "__iter__"):
+            for v in getattr(object, name):
+                out.append("%s:%s" % (name, v))
+        else:
             out.append("%s:%s" % (name, getattr(object, name)))
     return out
 
@@ -53,25 +55,3 @@ def fieldToFilter(fields):
             operator="and",
         )
     )
-
-
-def getFilterFields():
-    """Fetch all fields that use SuggestionFieldWidget"""
-    fti = getUtility(IDexterityFTI, name='pdir_entry')
-    schema = fti.lookupSchema()
-    try:
-        tags = schema.getTaggedValue(u'plone.autoform.widgets')
-    except KeyError:
-        # No tagged fields
-        return []
-
-    out = []
-    for (k, v) in tags.items():
-        if hasattr(v, 'getWidgetFactoryName'):
-            # Widget is wrapped by ParameterizedWidget
-            name = v.getWidgetFactoryName()
-        else:
-            name = v
-        if name == WIDGET_NAME:
-            out.append((k, schema[k].title,))
-    return out

@@ -5,7 +5,7 @@ from plone.app.testing import setRoles, login, TEST_USER_NAME, TEST_USER_ID
 from .base import IntegrationTestCase
 
 from ibme.persondirectory.catalog import fieldToFilter, \
-    uniqueValues, getFilterFields
+    uniqueValues
 
 
 class CatalogTest(IntegrationTestCase):
@@ -77,8 +77,12 @@ class CatalogTest(IntegrationTestCase):
 
         # Create some entries, still no unique values yet
         self.setFullFatEntrySchema()
-        portal.invokeFactory(type_name="pdir_directory",
-                             id="dir", title="UT Directory")
+        portal.invokeFactory(
+            type_name="pdir_directory",
+            id="dir",
+            title="UT Directory",
+            filter_fields=['position', 'research_group'],
+        )
         self.assertEquals(portal['dir'].sorting, "title")
         portal['dir'].invokeFactory(
             type_name="pdir_entry",
@@ -118,20 +122,3 @@ class CatalogTest(IntegrationTestCase):
             uniqueValues(catalog, 'research_group'),
             ["Cat pictures", "Cups of tea"])
         self.assertEquals(uniqueValues(catalog, 'dont_exist'), [])
-
-    def test_getFilterFields(self):
-        """Make sure we get defined fields back"""
-        portal = self.layer['portal']
-        setRoles(portal, TEST_USER_ID, ['Manager'])
-        login(portal, TEST_USER_NAME)
-
-        # Default schema has none
-        self.setDefaultEntrySchema()
-        self.assertEquals(getFilterFields(), [])
-
-        # Full-fat schema defines a few
-        self.setFullFatEntrySchema()
-        self.assertEquals(getFilterFields(), [
-            ('position', u'Position'),
-            ('research_group', u'Research Group'),
-        ])

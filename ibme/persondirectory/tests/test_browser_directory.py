@@ -14,7 +14,8 @@ class ContentTypeTest(IntegrationTestCase):
         portal.invokeFactory(
             type_name="pdir_directory",
             id="dir",
-            title="UT Directory")
+            title="UT Directory",
+            filter_fields=['position', 'research_group'])
         portal['dir'].invokeFactory(
             type_name="pdir_entry",
             id="ent1",
