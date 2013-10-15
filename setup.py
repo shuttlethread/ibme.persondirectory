@@ -17,7 +17,7 @@ setup(
     author='Jamie Lentin',
     author_email='jamie.lentin@shuttlethread.com',
     url='http://shuttlethread.com',
-    license='',
+    license='GPL',
     packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['ibme'],
     include_package_data=True,
